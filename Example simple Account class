@@ -1,4 +1,4 @@
-#Создаём примитивный класс "Банковский счет" с функциями пополнения и снятия с баланса.
+# Создаём примитивный класс "Банковский счет" с функциями пополнения и снятия с баланса.
 
 class Account:
     """Создаём класс Account с методами для пополнения и снятия денег с баланса"""
@@ -6,38 +6,37 @@ class Account:
     def __init__(self, name, balance):
         """Задём произвольное имя владельца и начальный баланс счёта.
         Если баланс введён некорректно, то возбуждается исключение"""
-        self.varify_summa (balance)
+        self.varify_summa(balance)
         self.name = name
         self.balance = balance
 
     def deposit(self, summa):
-        '''Данный метод прибавляет указанную сумму денег к балансу, если сумма введена корректно'''
-        self.varify_summa (summa)
+        """Данный метод прибавляет указанную сумму денег к балансу, если сумма введена корректно"""
+        self.varify_summa(summa)
         self.summa = summa
         self.balance += summa
 
     def withdraft(self, summa):
-        '''Данный метод снимает указанную сумму денег с баланса, если сумма <= баланс'''
+        """Данный метод снимает указанную сумму денег с баланса, если сумма <= баланс"""
         self.varify_summa(summa)
         self.varify_withdraft(summa)
         self.balance -= summa
 
-    def varify_withdraft(self,summa):
-        '''Проверка при снятии баланса, что сумма снятия <= балансу'''
+    def varify_withdraft(self, summa):
+        """Проверка при снятии баланса, что сумма снятия <= балансу"""
         if not self.balance >= summa:
             raise ValueError('Недостаточно средств')
 
     @staticmethod
     def varify_summa(summa):
-        '''Проверка, что введено положительно число или 0'''
-        if not (isinstance(summa,(int,float)) and summa>=0):
-            raise ValueError ('Число должно быть целым или вещественным, а также >= 0')
+        """Проверка, что введено положительно число или 0"""
+        if not (isinstance(summa, (int, float)) and summa >= 0):
+            raise ValueError('Число должно быть целым или вещественным, а также >= 0')
 
+# Проверка
 a = Account('Богдан', 1000)
 a.deposit(500)
-print (a.balance)
+print(a.balance)
 a.withdraft(400)
-print (a.balance)
-a.withdraft(1200) #Будет ошибка "Недостаточно средств", так как баланс = 1100, а пытаемся отнять 1200
-
-
+print(a.balance)
+a.withdraft(1200)  #Будет ошибка "Недостаточно средств", так как баланс = 1100, а пытаемся отнять 1200

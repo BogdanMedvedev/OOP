@@ -1,4 +1,4 @@
-#Сначала создаем класс-дескриптор.
+# Сначала создаем класс-дескриптор.
 # Мы сможем его использовать в других классах для удобства
 # благодаря ему не нужно будет создавать кучу свойств сеттеров и геттеров для каджого объекта.
 class Integer:
@@ -11,12 +11,13 @@ class Integer:
     def __set_name__(self, owner, name):
         self.name = '_'+name
 
-    def __get__ (self, instance, owner):
-        return getattr(instance,self.name)
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
 
     def __set__(self, instance, value):
         self.verify_coords(value)
-        setattr(instance,self.name, value)
+        setattr(instance, self.name, value)
+
 
 class Pont3D:
     """Класс для того, чтобы показать, как работет дескриптор"""
@@ -29,10 +30,10 @@ class Pont3D:
         self.y = b
         self.z = c
 
-a = Pont3D(2,5,6)
-b = Pont3D(1,1,1)
-a.x = 13
-b.x = 14
-print (a.x)
-print (b.x)
-
+# Проверка
+# a = Pont3D(2,5,6)
+# b = Pont3D(1,1,1)
+# a.x = 13
+# b.x = 14
+# print (a.x)
+# print (b.x)
